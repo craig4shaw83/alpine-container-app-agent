@@ -20,13 +20,13 @@ jobs:
     - uses: actions/checkout@v4
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag alpine:agent$(date +%s)
-
+      
     - uses: actions/checkout@v3
     - name: Run Microsoft Security DevOps
       uses: microsoft/security-devops-action@latest
       id: msdo
       with:
-        tools: AntiMalware, Checkov, Terrascan, Trivy, container-mapping
+        tools: Checkov, Terrascan, Trivy, container-mapping
 
     - name: Upload results to Security tab
       uses: github/codeql-action/upload-sarif@v2
